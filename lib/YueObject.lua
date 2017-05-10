@@ -4,10 +4,11 @@
  * @copyright Copyright (c) 2016, Raymond Cheung.
 --]]
 
--- https://github.com/deepmind/classic
 -- https://github.com/deepmind/classic/blob/master/classic/Class.lua
 -- https://www.lua.org/pil/16.1.html
 -- https://docs.oracle.com/javase/tutorial/java/javaOO/variables.html
+--
+-- Base object model, see [classic github repo](https://github.com/deepmind/classic) for usage information
 
 local classic = require("classic");
 local YueObject = classic.class("YueObject");
@@ -103,12 +104,15 @@ function YueObject:trycatch(funcLambda, err_msg)
 end
 
 function YueObject:test()
-  print("Loading " .. self:class():name() .. ":test()...");
-  print("Methods:", self:class():methods());
-  
-  local parent = self:class():parent();
-  if (parent ~= nil) then
-    print("Parent:", parent);
+  local base = self:class();
+  print("Loading " .. base:name() .. ":test()...");
+  print("Methods:", base:methods());
+
+  if (self._parent ~= nil) then
+    local parent = base:parent();
+    if (parent ~= nil) then
+      print("Parent:", parent);
+    end
   end
 end
 
