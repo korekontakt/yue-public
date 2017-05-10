@@ -4,11 +4,10 @@
  * @copyright Copyright (c) 2016, Raymond Cheung.
 --]]
 
--- https://github.com/deepmind/classic/blob/master/classic/Class.lua
--- https://www.lua.org/pil/16.1.html
--- https://docs.oracle.com/javase/tutorial/java/javaOO/variables.html
---
 -- Base object model, see [classic github repo](https://github.com/deepmind/classic) for usage information
+-- [DeepMind/Classic/Class.lua](https://github.com/deepmind/classic/blob/master/classic/Class.lua)
+-- [Programming in Lua - Classes](https://www.lua.org/pil/16.1.html)
+-- [Oracle - The Java Tutorials - Declaring Member Variables](https://docs.oracle.com/javase/tutorial/java/javaOO/variables.html)
 
 local classic = require("classic");
 local YueObject = classic.class("YueObject");

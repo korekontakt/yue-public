@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2017, Raymond Cheung.
 --]]
 
--- http://luaunit.readthedocs.io/en/luaunit_v3_2_1/
+-- [LuaUnit 3.2.1 Doc](http://luaunit.readthedocs.io/en/luaunit_v3_2_1/)
 
 package.path = "/usr/share/lua/5.2/?.lua;" .. package.path;
 
@@ -68,6 +68,8 @@ TestYueObject = {}
     obj:setter("x", 3);    
     obj:setter("y", 4);
     luaunit.assertEquals(obj:getter("x"), 3);
+    luaunit.assertEquals(obj:getter("y"), 4);
+    obj:setter("y", "five");
     luaunit.assertEquals(obj:getter("y"), 4);
     luaunit.assertNil(instance:getter("z"));
   end
