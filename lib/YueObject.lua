@@ -4,8 +4,8 @@
  * @copyright Copyright (c) 2016, Raymond Cheung.
 --]]
 
--- Base object model, see [classic github repo](https://github.com/deepmind/classic) for usage information
--- [DeepMind/Classic/Class.lua](https://github.com/deepmind/classic/blob/master/classic/Class.lua)
+-- Base object model, see [classic github repo](https://github.com/DeepMind/classic) for usage information
+-- [DeepMind/classic/Class.lua](https://github.com/DeepMind/classic/blob/master/classic/Class.lua)
 -- [Programming in Lua - Classes](https://www.lua.org/pil/16.1.html)
 -- [Oracle - The Java Tutorials - Declaring Member Variables](https://docs.oracle.com/javase/tutorial/java/javaOO/variables.html)
 
