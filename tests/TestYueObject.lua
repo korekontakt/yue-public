@@ -1,5 +1,5 @@
 --[[
- * @author Raymond Cheung <korekontakt@gmail.com>
+ * @author Raymond Cheung [korekontakt](https://github.com/korekontakt/)
  * 
  * @copyright Copyright (c) 2017, Raymond Cheung.
 --]]
@@ -41,7 +41,7 @@ TestYueObject = {}
     luaunit.assertEquals(obj2.y, 2)
     luaunit.assertEquals(obj2.z, 3)
     obj1.x = 4;
-    luaunit.assertEquals(obj2.x, 1)    
+    luaunit.assertEquals(obj2.x, 1)
   end
   
   function TestYueObject:testExtend()
@@ -94,7 +94,7 @@ TestYueObject = {}
   
   function TestYueObject:testSetter()
     local obj = instance:clone()
-    obj:setter("x", 3)    
+    obj:setter("x", 3)
     obj:setter("y", 4)
     luaunit.assertEquals(obj:getter("x"), 3)
     luaunit.assertEquals(obj:getter("y"), 4)
@@ -118,7 +118,11 @@ TestYueObject = {}
   end
   
   function TestYueObject:testTest()
-    instance:test()
+    local TestParent, _ = classic.class("TestParent", YueObject)
+    local TestChild, _ = classic.class("TestChild", TestParent)
+    local obj = TestChild():new();
+    obj:test()
+    luaunit.assertEquals(tostring(obj:getParent()), "classic.class<TestParent>")
   end
 -- end of table TestYueObject
 

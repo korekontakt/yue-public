@@ -1,5 +1,5 @@
 --[[
- * @author Raymond Cheung <korekontakt@gmail.com>
+ * @author Raymond Cheung [korekontakt](https://github.com/korekontakt/)
  * 
  * @copyright Copyright (c) 2016, Raymond Cheung.
 --]]
@@ -7,6 +7,7 @@
 -- Base object model, see [classic github repo](https://github.com/DeepMind/classic) for usage information
 -- [DeepMind/classic/Class.lua](https://github.com/DeepMind/classic/blob/master/classic/Class.lua)
 -- [Programming in Lua - Classes](https://www.lua.org/pil/16.1.html)
+-- [Microsoft - .NET Core - System.Object.cs](https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Object.cs)
 -- [Oracle - The Java Tutorials - Declaring Member Variables](https://docs.oracle.com/javase/tutorial/java/javaOO/variables.html)
 
 local classic = require("classic")
@@ -20,15 +21,20 @@ local YueObject = classic.class("YueObject")
 YueObject._modifier = {private = true}
 
 function YueObject:_init(opt)
-  self = opt or {}   -- create object if user does not provide one
+  self:_assign(opt) -- create object if user does not provide one
 end
 
-function YueObject:new(opt)
+-- Assign a table option as class attributes
+function YueObject:_assign(opt)
   if (type(opt) == "table") then
     for k, v in pairs(opt) do
       self[k] = v
     end
   end
+end
+
+function YueObject:new(opt)
+  self:_assign(opt)
   return self
 end
 
@@ -102,17 +108,26 @@ function YueObject:trycatch(funcLambda, err_msg)
   return psts, perr
 end
 
-function YueObject:test()
-  local base = self:class()
-  print("Loading " .. base:name() .. ":test()...")
-  print("Methods:", base:methods())
-
+function YueObject:getParent()
   if (self._parent ~= nil) then
-    local parent = base:parent()
-    if (parent ~= nil) then
-      print("Parent:", parent)
+    return self._parent
+  else
+    local p = self:class():name()
+    if (p == "YueObject") then
+      return "classic"
     end
+    local fParent = function()
+      p = self:class():parent()
+    end
+    psts = self:trycatch(fParent)
+    return p
   end
+end
+
+function YueObject:test()
+  print("Loading " .. self:class():name() .. ":test()...")
+  print("Methods:", self:class():methods())
+  print("Parent:", self:getParent())
 end
 
 return YueObject
