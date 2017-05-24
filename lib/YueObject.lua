@@ -108,9 +108,9 @@ function YueObject:trycatch(funcLambda, err_msg)
   return psts, perr
 end
 
-function YueObject:getParent()
+function YueObject:getParentName()
   if (self._parent ~= nil) then
-    return self._parent
+    return tostring(self._parent)
   else
     local p = self:class():name()
     if (p == "YueObject") then
@@ -120,14 +120,14 @@ function YueObject:getParent()
       p = self:class():parent()
     end
     psts = self:trycatch(fParent)
-    return p
+    return tostring(p)
   end
 end
 
 function YueObject:test()
   print("Loading " .. self:class():name() .. ":test()...")
   print("Methods:", self:class():methods())
-  print("Parent:", self:getParent())
+  print("Parent:", self:getParentName())
 end
 
 return YueObject

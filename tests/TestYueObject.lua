@@ -13,17 +13,17 @@ local YueObject = require("lib.YueObject")
 
 TestYueObject = {}
   function TestYueObject:setUp()
-    self.opt = {
+    opt = {
       x = 0,
       y = 0,
     }
     instance = YueObject()
-    instance:new(self.opt)
+    instance:new(opt)
   end
   
   function TestYueObject:testNew()
     if (instance == nil) then
-      instance = YueObject():new(self.opt)
+      instance = YueObject():new(opt)
     end
     luaunit.assertEquals(instance.x, 0)
     luaunit.assertEquals(instance.y, 0)
@@ -122,7 +122,7 @@ TestYueObject = {}
     local TestChild, _ = classic.class("TestChild", TestParent)
     local obj = TestChild():new();
     obj:test()
-    luaunit.assertEquals(tostring(obj:getParent()), "classic.class<TestParent>")
+    luaunit.assertEquals(obj:getParentName(), "classic.class<TestParent>")
   end
 -- end of table TestYueObject
 
