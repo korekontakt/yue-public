@@ -116,10 +116,7 @@ function YueObject:getParentName()
     if (p == "YueObject") then
       return "classic"
     end
-    local fParent = function()
-      p = self:class():parent()
-    end
-    psts = self:trycatch(fParent)
+    self:trycatch(function() p = self:class():parent() end)
     return tostring(p)
   end
 end
